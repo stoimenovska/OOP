@@ -1,5 +1,5 @@
 #pragma once
-
+#include <cstring>
 class Picture {
 private:
 	int id;
@@ -14,11 +14,16 @@ public:
 		name[0] = '\0';
 		value = 0;
 	}
-	Picture(int id_, char author_, char name_, double value_) {};
-double getValue()
-	{
-		return value;
+	Picture(int id_, char author_[], char name_[], double value_){
+		id = id_;
+		strcpy(author, author_);
+		strcpy(name, name_);
+		value = value_;
 	}
+double getValue(){
+
+		return value;
+}
 };
 
 class Exhibition {
@@ -39,16 +44,14 @@ void addPicture(Picture &picture) {
 	 pictures[numOfPictures] = picture;
 	 numOfPictures++;
 		
-	}
-int getPrice() {
-
-	return price;
- }
-
+}
 double calculate() {
+
 	double sum = 0;
-	for (int i = 0; i < numOfPictures; i++)sum += pictures[i].getValue();
+
+	for (int i = 0; i < numOfPictures; i++)
+		sum += pictures[i].getValue();
+
 	return price*sum;
 }
 };
-
